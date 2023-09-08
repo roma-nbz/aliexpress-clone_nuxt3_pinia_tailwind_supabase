@@ -8,7 +8,7 @@ const user = useSupabaseUser()
 
 const isAccountMenu = ref(false)
 const isCartHover = ref(false)
-const isSearching = ref(true)
+const isSearching = ref(false)
 const searchItem = ref('')
 const items = ref(null)
 

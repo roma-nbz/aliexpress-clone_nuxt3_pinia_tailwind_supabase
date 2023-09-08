@@ -10,14 +10,10 @@ const props = defineProps({
 	product: {
 		type: Object,
 		required: true
-	},
-	selectedArray: {
-		type: Array,
-		required: true
 	}
 })
 
-const { product, selectedArray } = toRefs(props)
+const { product } = toRefs(props)
 
 const emits = defineEmits(['selectedRadio'])
 

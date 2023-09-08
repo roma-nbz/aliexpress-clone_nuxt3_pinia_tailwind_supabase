@@ -3,8 +3,8 @@ import { useUserStore } from '~/stores/user.js'
 
 const userStore = useUserStore()
 
-// const client = useSupabaseClient()
-// const user = useSupabaseUser()
+const client = useSupabaseClient()
+const user = useSupabaseUser()
 
 const goTo = (url) => {
 	userStore.isMenuOverlay = false
@@ -52,7 +52,7 @@ const signOut = () => {
 						{{ userStore.cart.length }}
 					</div>
 				</li>
-				<li v-if="false" @click="signOut()"
+				<li v-if="user" @click="signOut()"
 					class="relative flex items-center justify-between py-2.5 border-b px-3 hover:bg-gray-100 cursor-pointer">
 					<div class=" flex items-center text-[20px] font-semibold">
 						<Icon name="ph:sign-out-light" size="33" />

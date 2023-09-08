@@ -8,32 +8,30 @@ const route = useRoute()
 
 definePageMeta({ middleware: 'auth' })
 
-const stripe = null
-const elements = null
-const card = null
+let stripe = null
+let elements = null
+let card = null
 const form = null
 const total = ref(0)
-const clientSecret = null
+let clientSecret = null
 const currentAddress = ref(null)
 const isProcessing = ref(false)
 
 const stripeInit = async () => {
-	const runtimeConfig = useRuntimeConfig()
-	stripe = Stripe(runtimeConfig.stripePk)
+	stripe = Stripe(`${process.env.STRIPE_PK_KEY}`)
 
 	let res = await $fetch('/api/stripe/paymentintent', {
 		method: 'POST',
 		body: {
-			amount: total.value
+			amount: total.value,
 		}
 	})
-
 	clientSecret = res.client_secret
 
 	elements = stripe.elements()
-	const style = {
+	var style = {
 		base: {
-			fontSize: '18px'
+			fontSize: "18px",
 		},
 		invalid: {
 			fontFamily: 'Arial, sans-serif',
@@ -46,10 +44,10 @@ const stripeInit = async () => {
 		style: style
 	})
 
-	card.mount('#card-element')
-	card.on("change", (e) => {
-		document.querySelector('button').disabled = e.empty
-		document.querySelector('#card-error').textContent = e.error ? e.error.message : ''
+	card.mount("#card-element")
+	card.on("change", function (event) {
+		document.querySelector("button").disabled = event.empty
+		document.querySelector("#card-error").textContent = event.error ? event.error.message : ""
 	})
 
 	isProcessing.value = false

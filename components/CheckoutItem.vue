@@ -5,6 +5,8 @@ const props = defineProps({
 		required: true
 	}
 })
+
+const { product } = toRefs(props)
 </script>
 
 <template>
@@ -12,7 +14,8 @@ const props = defineProps({
 		<img class="rounded-md md:w-[150px] w-[90px]" :src="product.url">
 		<div class="overflow-hidden pl-2">
 			<div class="flex items-center">
-				<span class="bg-[#fd374f] text-white text-center text-[9px] font-semibold px-1.5 rounded-sm min-w-[80px]">Welcome Deal</span>
+				<span class="bg-[#fd374f] text-white text-center text-[9px] font-semibold px-1.5 rounded-sm min-w-[80px]">Welcome
+					Deal</span>
 				<p class="truncate pl-2">
 					{{ product.title }}
 				</p>
